@@ -1,7 +1,18 @@
 import "../styles/App.scss";
 import logo from "../images/blackboard.jpg";
+import { useState } from "react";
 
 function App() {
+  const [numberOfErrors, setnumberOfErrors] = useState (0);
+  const handleClikBtn = (ev) => {ev.preventDefault(); setnumberOfErrors(numberOfErrors+1)};
+ 
+
+
+
+
+
+
+
   return (
     <div className="page">
       <header>
@@ -64,6 +75,7 @@ function App() {
           <span className="error-2 line"></span>
           <span className="error-1 line"></span>
         </section>
+        <button onClick={handleClikBtn}>Incremetar</button>
       </main>
     </div>
   );
