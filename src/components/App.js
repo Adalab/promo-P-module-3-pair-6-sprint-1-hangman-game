@@ -6,13 +6,6 @@ function App() {
   const [numberOfErrors, setnumberOfErrors] = useState (0);
   const handleClikBtn = (ev) => {ev.preventDefault(); setnumberOfErrors(numberOfErrors+1)};
  
-
-
-
-
-
-
-
   return (
     <div className="page">
       <header>
@@ -81,4 +74,6 @@ function App() {
   );
 }
 
+
 export default App;
+
