@@ -3,9 +3,23 @@ import logo from "../images/blackboard.jpg";
 import { useState } from "react";
 
 function App() {
-  const [numberOfErrors, setnumberOfErrors] = useState (0);
-  const handleClikBtn = (ev) => {ev.preventDefault(); setnumberOfErrors(numberOfErrors+1)};
+  /*const [numberOfErrors, setnumberOfErrors] = useState (0);
+  const handleClikBtn = (ev) => {ev.preventDefault(); setnumberOfErrors(numberOfErrors+1)};*/
  
+
+  const[lastLetter, setlastLetter] = useState ('');
+  const handleInputLastLetter = (ev) => {
+    const newValue = ev.target.value;
+    setlastLetter(newValue);
+    console.log(newValue);
+  }
+  const handleSubmit = (ev) => {
+    // Aquí detenemos el envío del formulario
+    ev.preventDefault();
+    // Aquí enviamos los datos al servidor con un fetch o lo que sea
+  };
+
+
   return (
     <div className="page">
       <header>
@@ -39,8 +53,8 @@ function App() {
               <li className="letter">x</li>
             </ul>
           </div>
-          <form className="form">
-            <label className="title" for="last-letter">
+          <form className="form" onSubmit={handleSubmit}>
+            <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
             <input
@@ -50,6 +64,8 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              onChange={handleInputLastLetter}
+              value={lastLetter}
             />
           </form>
         </section>
@@ -68,7 +84,7 @@ function App() {
           <span className="error-2 line"></span>
           <span className="error-1 line"></span>
         </section>
-        <button onClick={handleClikBtn}>Incremetar</button>
+
       </main>
     </div>
   );
