@@ -3,22 +3,26 @@ import logo from "../images/blackboard.jpg";
 import { useState } from "react";
 
 function App() {
-  /*const [numberOfErrors, setnumberOfErrors] = useState (0);
-  const handleClikBtn = (ev) => {ev.preventDefault(); setnumberOfErrors(numberOfErrors+1)};*/
- 
+  const [lastLetter, setlastLetter] = useState("");
 
-  const[lastLetter, setlastLetter] = useState ('');
+  //const formatoValido= expresionRegular;
+
   const handleInputLastLetter = (ev) => {
     const newValue = ev.target.value;
-    setlastLetter(newValue);
+
+    if (newValue.match("[a-zA-ZñÑ]") !== null) {
+      setlastLetter(newValue);
+    } else {
+      setlastLetter("");
+    }
     console.log(newValue);
-  }
+  };
+
   const handleSubmit = (ev) => {
     // Aquí detenemos el envío del formulario
     ev.preventDefault();
     // Aquí enviamos los datos al servidor con un fetch o lo que sea
   };
-
 
   return (
     <div className="page">
@@ -58,9 +62,9 @@ function App() {
               Escribe una letra:
             </label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               className="form__input"
-              maxlength="1"
+              maxLength="1"
               type="text"
               name="last-letter"
               id="last-letter"
@@ -84,12 +88,9 @@ function App() {
           <span className="error-2 line"></span>
           <span className="error-1 line"></span>
         </section>
-
       </main>
     </div>
   );
 }
 
-
 export default App;
-
