@@ -1,11 +1,29 @@
 import "../styles/App.scss";
-import logo from "../images/blackboard.jpg";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import getWords from "../services/api";
 
 function App() {
+  //VARIABLES DE ESTADO
+
+  ///Almacenar la palabra que se deberá adivinar.
+  const [word, setWord] = useState("");
+
+  ///Almacenar las letras que introduce la jugadora
+  // const [userLetters, setUserLetters] = useState([]);
+
+  ///Almacenar la última letra introducida por la jugadora.
   const [lastLetter, setlastLetter] = useState("");
 
-  //const formatoValido= expresionRegular;
+  //Effect
+
+  useEffect(() => {
+    getWords().then((data) => {
+      setWord(data);
+    });
+  }, []);
+
+  console.log(word);
 
   const handleInputLastLetter = (ev) => {
     const newValue = ev.target.value;
